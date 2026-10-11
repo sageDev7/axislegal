@@ -91,7 +91,7 @@
     d.querySelector("summary").addEventListener("click", function (e) {
       e.preventDefault();
       if (d.open) { closeFaq(d); return; }
-      faqs.forEach(function (o) { if (o !== d && o.open) closeFaq(o); });
+      d.closest(".faq-list").querySelectorAll("details").forEach(function (o) { if (o !== d && o.open) closeFaq(o); });
       d.open = true;
       if (reduce) return;
       var a = d.querySelector(".faq-a"), h = a.scrollHeight;
@@ -100,6 +100,18 @@
       a.addEventListener("transitionend", function te() { a.removeEventListener("transitionend", te); a.style.cssText = ""; });
     });
   });
+
+  /* ---------- preguntas frecuentes: índice lateral activo ---------- */
+  var sideLinks = document.querySelectorAll(".faqp-side a");
+  if (sideLinks.length && "IntersectionObserver" in window) {
+    var sio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        sideLinks.forEach(function (a) { a.classList.toggle("act", a.getAttribute("href") === "#" + en.target.id); });
+      });
+    }, { rootMargin: "-30% 0px -60% 0px" });
+    document.querySelectorAll(".faq-grp").forEach(function (g) { sio.observe(g); });
+  }
 
   /* ---------- reveals ---------- */
   var items = document.querySelectorAll(".reveal");
@@ -113,7 +125,7 @@
   }
 
   /* ---------- parallax del hero + el eje del método que se dibuja con el scroll ---------- */
-  var heroBg = document.querySelector(".hero-bg"), eje = document.getElementById("eje");
+  var heroBg = document.querySelector(".hero-bg, .ph-bg"), eje = document.getElementById("eje");
   var ejeItems = eje ? eje.querySelectorAll("li") : [];
   var ticking = false;
   function onMotion() {
@@ -138,7 +150,7 @@
     window.addEventListener("resize", onMotion);
   }
 
-  /* ---------- WhatsApp flotante: se oculta en el hero, contacto y footer ---------- */
+  /* ---------- WhatsApp flotante: se oculta en la cabecera, el contacto y el footer ---------- */
   var fab = document.getElementById("waFloat");
   if ("IntersectionObserver" in window) {
     var hidden = new Set();
@@ -146,9 +158,7 @@
       entries.forEach(function (en) { if (en.isIntersecting) hidden.add(en.target); else hidden.delete(en.target); });
       fab.classList.toggle("hide", hidden.size > 0);
     });
-    fio.observe(document.querySelector(".hero"));
-    fio.observe(document.getElementById("contacto"));
-    fio.observe(document.getElementById("ftr"));
+    document.querySelectorAll(".hero, .ph, .nf, #contacto, .cta-band, #ftr").forEach(function (el) { fio.observe(el); });
   }
 
   /* ---------- formulario (FormSubmit + modal) ---------- */
