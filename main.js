@@ -40,9 +40,9 @@
     Array.prototype.slice.call(node.childNodes).forEach(function (n) {
       if (n.nodeType === 3) {
         var frag = document.createDocumentFragment();
-        n.textContent.split(/(\s+)/).forEach(function (part) {
+        n.textContent.split(/([ \t\n\r]+)/).forEach(function (part) {   // el &nbsp; no separa: mantiene juntas las palabras que deben ir juntas
           if (!part) return;
-          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+          if (/^[ \t\n\r]+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
           var w = document.createElement("span");
           w.className = "w";
           w.textContent = part;
