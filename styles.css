@@ -200,8 +200,8 @@ body.nav-open .mnav-ov{opacity:1;visibility:visible}
 .faq-list summary{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.4rem .2rem;cursor:pointer;list-style:none;font-family:var(--head);font-weight:600;font-size:1.08rem;line-height:1.4;color:var(--green);transition:color .3s}
 .faq-list summary::-webkit-details-marker{display:none}
 .faq-list summary:hover{color:#7A5E26}
-.faq-list summary i{display:grid;place-items:center;flex:none;width:2rem;height:2rem;border:1px solid #7A5E26;border-radius:50%;font-size:1rem;color:#7A5E26;transition:transform .45s var(--ease),background .3s,color .3s}
-.faq-list details[open] summary i{transform:rotate(45deg);background:var(--green);border-color:var(--green);color:var(--ivory)}
+.faq-list summary i{display:grid;place-items:center;flex:none;width:1.6rem;height:1.6rem;font-size:1.25rem;color:#7A5E26;transition:transform .45s var(--ease),color .3s}
+.faq-list details[open] summary i{transform:rotate(45deg);color:var(--green)}
 .faq-a{overflow:hidden}
 .faq-a p{padding:0 3.2rem 1.5rem .2rem;font-size:1rem;line-height:1.75;color:#2E3A32}
 
@@ -491,7 +491,9 @@ body.nav-open .mnav-ov{opacity:1;visibility:visible}
   .eje-v{height:2px;width:120px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
   .principal-copy,.faq-grid>div:first-child,.contacto-info,.sec-top{text-align:center}
   .principal .lead,.contacto-info .lead{margin-left:auto;margin-right:auto}
-  .checks{max-width:21rem;margin-left:auto;margin-right:auto}
+  .checks{max-width:21rem;margin-left:auto;margin-right:auto;text-align:left}
+  .checks li{align-items:flex-start}
+  .checks i{margin-top:.05rem}
   .principal-ctas{flex-direction:column;gap:1.2rem}
   .principal-ctas .btn{width:100%;max-width:300px}
   .sec-top{flex-direction:column;align-items:center;gap:1.4rem;margin-bottom:2.4rem}
@@ -499,8 +501,9 @@ body.nav-open .mnav-ov{opacity:1;visibility:visible}
   .a-d,.areas-list i{grid-column:auto;grid-row:auto}
   .areas-list i{justify-self:center}
   .areas-list a:hover{padding-left:.4rem}
-  .faq-list summary{font-size:1rem;text-align:left}
-  .faq-a p{padding-right:.2rem;text-align:left}
+  .faq-list summary{font-size:1rem;text-align:center;padding-left:1.8rem}
+  .faq-list summary span{flex:1}
+  .faq-a p{padding:0 .4rem 1.5rem;text-align:center}
   .datos{max-width:24rem;margin:0 auto;text-align:left}
   .form-card{padding:2.2rem 1.3rem}
   .form-card h3,.form-card>p{text-align:center}
